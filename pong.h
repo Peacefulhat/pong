@@ -34,19 +34,15 @@ typedef struct {
 }Ball;
 
 #define PP(p) printf("{x: %d, y: %d}\n",p.x,p.y);
-
 void left_player_move(Player *left);
 void right_player_move(Player *right);
-
 void ball_move(Ball *ball, Player left, Player right);
+
 
 #endif// PONG_H
 
+
 #ifdef PONG_IMP
-
-void pos_print(Player *p){
-
-}
 
  void left_player_move(Player *left) {
    
@@ -66,6 +62,7 @@ void pos_print(Player *p){
      DrawRectangle(left->x, left->y, RWIDTH, RHEIGHT, COLOR_RECT);
 }
 
+
  void right_player_move(Player *right) {
    
     if (right->y <=SPEED) {
@@ -83,6 +80,7 @@ void pos_print(Player *p){
     }
      DrawRectangle(right->x, right->y, RWIDTH, RHEIGHT, COLOR_RECT);
 }
+
 
 void ball_move(Ball* ball, Player left, Player right){
   DrawCircle(ball->x, ball->y, ball->radius, COLOR_BALL);
