@@ -1,12 +1,12 @@
 #ifndef PONG_H
 #define PONG_H
-//Goal to this to implement chaotic pong.:)
+//Goal to this to write chaotic pong.:)
 #include<stdio.h>
 #include<raylib.h>
-#include<assert.h>
 #include<stdbool.h>
 #include<math.h>
-#define PASSERT assert
+
+
 #define HEIGHT 400
 #define WIDTH 400
 #define TITLE "Chaotic Pong"
