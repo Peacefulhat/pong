@@ -2,8 +2,8 @@
 #include"pong.h"
 
 int main(){
-  Player left={5,5};
-  Player right={P2LOC,5};
+  Player left={5,5,{0,0}};
+  Player right={P2LOC,5,{0,0}};
   Ball ball ={WIDTH/2,HEIGHT/2,7,false,10.f};
   SetTargetFPS(60);
   InitWindow(WIDTH,HEIGHT,TITLE);
