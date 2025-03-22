@@ -19,12 +19,12 @@
 
 typedef struct {
   int x, y;
-}Player;
+}velocity;
 
 typedef struct {
   int x, y;
-}velocity;
-  
+  velocity v;
+}Player;
 
 typedef struct {
   int x,y;
