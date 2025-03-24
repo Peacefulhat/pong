@@ -41,5 +41,4 @@ sudo make install
 git clone https://github.com/your-username/pong.git
 cd pong
 ```
-run ./build.sh
-./pong
+run ./build.sh && ./pong
