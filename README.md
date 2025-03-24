@@ -1,9 +1,16 @@
-# pong
-simple poing game written in c with raylib,
-not completely written yet
+# Pong
 
-#build.sh is quite simple look inside the file and just install the required things
-for arch linux 
-sudo pacman -S raylib 
-this should do the job.
-then cd pong && ./build.sh
+A simple Pong game written in C using Raylib.
+
+
+## Features
+- Classic Pong gameplay with simple controls.
+- Uses the Raylib library for graphics.
+- Written in pure C for performance and simplicity.
+
+## Installation
+
+### Arch Linux
+Install Raylib using:
+```sh
+sudo pacman -S raylib
