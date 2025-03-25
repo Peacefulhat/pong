@@ -2,7 +2,7 @@
 
 A simple Pong game written in C using Raylib.
 ##### Note
-under development , not formated well.
+Under development
 
 ## Features
 - Classic Pong gameplay with simple controls.
