@@ -21,13 +21,13 @@
 #define RHEIGHT 130
 #define COLOR_RECT RED
 #define COLOR_BALL RED
-#define P2LOC (WIDTH-RWIDTH)-5
+#define P2LOC (WIDTH-RWIDTH) - 5
 #define BALL_VEL_SCALE 100
 #define SCORE_REGION 65
 
 typedef struct{
-unsigned int p1,p2;
- bool state;
+  unsigned int p1,p2;
+  bool state;
 }pair;
 
 typedef struct {
@@ -61,30 +61,30 @@ void settings(){
 }
 
 void get_score(Ball *b) {
-    if (b->pos.x < b->radius) { 
-        score.p2 += 1;
-        score.state = true;
-    }
-    if (b->pos.x > WIDTH-b->radius) {  
-        score.p1 += 1;
-        score.state = true;
-    }
+  if (b->pos.x < b->radius) { 
+    score.p2 += 1;
+    score.state = true;
+  }
+  if (b->pos.x > WIDTH-b->radius) {  
+    score.p1 += 1;
+    score.state = true;
+  }
 }
 
 
 void reset(Ball*b, vec2 *left, vec2*right,vec2 ini){
-    PMA_ASSERT(b!=NULL);
-    PMA_ASSERT(left!=NULL);
-    PMA_ASSERT(right!=NULL);
-        
-    b->pos.x=WIDTH/2;
-    b->pos.y=HEIGHT/2;
-    left->x=MARGIN;
-    left->y=MARGIN;
-    right->x=P2LOC;
-    right->y=MARGIN;
-    b->vel.x=ini.x;
-    b->vel.y=ini.x;
+  PMA_ASSERT(b!=NULL);
+  PMA_ASSERT(left!=NULL);
+  PMA_ASSERT(right!=NULL);
+  
+  b->pos.x=WIDTH/2;
+  b->pos.y=HEIGHT/2;
+  left->x=MARGIN;
+  left->y=MARGIN;
+  right->x=P2LOC;
+  right->y=MARGIN;
+  b->vel.x=ini.x;
+  b->vel.y=ini.x;
   
   return ;
 }
@@ -92,11 +92,11 @@ void reset(Ball*b, vec2 *left, vec2*right,vec2 ini){
 void quit_screen(){
   
   for(int i=0;i<120;i++){ 
-        BeginDrawing();
-        ClearBackground(BLACK);
-        DrawText("GOODBYE!", 80, 100, 100, RED);
-        DrawText("Thanks For Playing", 100, 250, 30, RED);
-        EndDrawing();
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawText("GOODBYE!", 80, 100, 100, RED);
+    DrawText("Thanks For Playing", 100, 250, 30, RED);
+    EndDrawing();
   }
   exit(0);
 }
@@ -123,55 +123,55 @@ void home_screen(){
   DrawText("SETTINGS", settings.x+(int)b_offset.x,settings.y+(int)b_offset.y, 50, DARKBLUE);
   
   //quit
-    DrawRectangleLinesEx(quit, 3, BLACK);
+  DrawRectangleLinesEx(quit, 3, BLACK);
   DrawText("QUIT", quit.x+(int)b_offset.x,quit.y+(int)b_offset.y, 50, DARKBLUE);
   
   Vector2 mouse=GetMousePosition();
-   if((mouse.x>play.x && mouse.x<play.x+200) &&
-    (mouse.y>play.y&&mouse.y<play.y+50)){
-   if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-     options=1;
+  if((mouse.x>play.x && mouse.x<play.x+200) &&
+     (mouse.y>play.y&&mouse.y<play.y+50)){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+      options=1;
     }
   }
    
-   if((mouse.x>settings.x && mouse.x<settings.x+200) &&
-    (mouse.y>settings.y&&mouse.y<settings.y+50)){
-   if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-     options=2;
+  if((mouse.x>settings.x && mouse.x<settings.x+200) &&
+     (mouse.y>settings.y&&mouse.y<settings.y+50)){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+      options=2;
     }
   }
-    if((mouse.x>quit.x && mouse.x<quit.x+200) &&
-    (mouse.y>quit.y&&mouse.y<quit.y+50)){
-   if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-     options=3;
+  if((mouse.x>quit.x && mouse.x<quit.x+200) &&
+     (mouse.y>quit.y&&mouse.y<quit.y+50)){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+      options=3;
     }
   }  
 }
 
 void draw_components(vec2 *left , vec2*right,Ball *b, vec2 iniv){
-    PMA_ASSERT(left!=NULL);
-    PMA_ASSERT(right!=NULL);
-    PMA_ASSERT(b!=NULL);
+  PMA_ASSERT(left!=NULL);
+  PMA_ASSERT(right!=NULL);
+  PMA_ASSERT(b!=NULL);
+   
+    
+  // middle line
+  DrawRectangle(WIDTH / 2, 0, 3, HEIGHT, COLOR_RECT);
+  
+  // paddles
+  DrawRectangle(left->x, left->y, RWIDTH, RHEIGHT, COLOR_RECT);
+  DrawRectangle(right->x, right->y, RWIDTH, RHEIGHT, COLOR_RECT);
+    
+    
+  // Score region
 
-    
-    // middle line
-    DrawRectangle(WIDTH / 2, 0, 3, HEIGHT, COLOR_RECT);
-    
-    // paddles
-    DrawRectangle(left->x, left->y, RWIDTH, RHEIGHT, COLOR_RECT);
-    DrawRectangle(right->x, right->y, RWIDTH, RHEIGHT, COLOR_RECT);
-    
-    
-    // Score region
-
-     DrawRectangle(0, 0, WIDTH, SCORE_REGION, RAYWHITE);
-     DrawRectangle(0, SCORE_REGION - 5, WIDTH,5, RED);
-     // back button
-     Rectangle back={MARGIN,20, 30, 30};
-     DrawRectangleLinesEx(back, 3, BLACK);
-     DrawText("<-",back.x+5,back.y+5, 25, BLACK);
-     // home logic
-     /*    Vector2 mouse=GetMousePosition();
+  DrawRectangle(0, 0, WIDTH, SCORE_REGION, RAYWHITE);
+  DrawRectangle(0, SCORE_REGION - 5, WIDTH,5, RED);
+  // back button
+  Rectangle back={MARGIN,20, 30, 30};
+  DrawRectangleLinesEx(back, 3, BLACK);
+  DrawText("<-",back.x+5,back.y+5, 25, BLACK);
+  // home logic
+  /*Vector2 mouse=GetMousePosition();
       if((mouse.x>back.x && mouse.x<back.x+5) &&
     (mouse.y>back.y&&mouse.y<back.y+5)){
    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
@@ -179,98 +179,96 @@ void draw_components(vec2 *left , vec2*right,Ball *b, vec2 iniv){
     }
     }*/
 
- Vector2 mouse = GetMousePosition();
-    if (CheckCollisionPointRec(mouse, back) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        options = 0;
-    }
-
-      
-     DrawText("SCORE", WIDTH / 2 - 110, 10, 30, RED);
+Vector2 mouse = GetMousePosition();
+ if (CheckCollisionPointRec(mouse, back) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+   options = 0;
+ }
+ 
+ DrawText("SCORE", WIDTH / 2 - 110, 10, 30, RED);
+ char score_text[20]; 
+ sprintf(score_text, "%d : %d", score.p1, score.p2);
+ 
+ DrawText(score_text, WIDTH / 2, 10, 30, RED);
+ get_score(b);
      
-    char score_text[20]; 
-    sprintf(score_text, "%d : %d", score.p1, score.p2);
-    
-
-    DrawText(score_text, WIDTH / 2, 10, 30, RED);
-    get_score(b);
-     
-     if(score.state==true){
-       reset(b,left,right, iniv);
-       score.state=false;
-      }
+ if(score.state==true){
+   reset(b,left,right, iniv);
+   score.state=false;
+ }
 }
 
 
 void left_paddle_move(vec2 *left) {
   PMA_ASSERT(left!=NULL);
-    if (left->y <= SCORE_REGION + SPEED) {
-        left->y = SCORE_REGION + SPEED;
-    }
-    if (left->y >= HEIGHT - RHEIGHT - SPEED) {
-        left->y = HEIGHT - RHEIGHT - SPEED;
-    }
+  if (left->y <= SCORE_REGION + SPEED) {
+    left->y = SCORE_REGION + SPEED;
+  }
+  if (left->y >= HEIGHT - RHEIGHT - SPEED) {
+    left->y = HEIGHT - RHEIGHT - SPEED;
+  }
 
-    if (IsKeyDown(KEY_UP)) {
-        left->y -= SPEED;
-    }
-    if (IsKeyDown(KEY_DOWN)) {
-        left->y += SPEED;
-    }
-    DrawRectangle(left->x, left->y, RWIDTH, RHEIGHT, COLOR_RECT);
+  if (IsKeyDown(KEY_UP)) {
+    left->y -= SPEED;
+  }
+  if (IsKeyDown(KEY_DOWN)) {
+    left->y += SPEED;
+  }
+  
+  DrawRectangle(left->x, left->y, RWIDTH, RHEIGHT, COLOR_RECT);
 }
 
 void right_paddle_move(vec2 *right) {
-    PMA_ASSERT(right!=NULL);
-    
-    if (right->y <= SCORE_REGION + SPEED) {
-        right->y = SCORE_REGION + SPEED;
-    }
-    if (right->y >= HEIGHT - RHEIGHT - SPEED) {
-        right->y = HEIGHT - RHEIGHT - SPEED;
-    }
-    if (IsKeyDown(KEY_W)) {
-        right->y -= SPEED;
-    }
-    if (IsKeyDown(KEY_S)) {
-        right->y += SPEED;
-    }
-    DrawRectangle(right->x, right->y, RWIDTH, RHEIGHT, COLOR_RECT);
+  PMA_ASSERT(right!=NULL);
+  
+  if (right->y <= SCORE_REGION + SPEED) {
+    right->y = SCORE_REGION + SPEED;
+  }
+  if (right->y >= HEIGHT - RHEIGHT - SPEED) {
+    right->y = HEIGHT - RHEIGHT - SPEED;
+  }
+  if (IsKeyDown(KEY_W)) {
+    right->y -= SPEED;
+  }
+  if (IsKeyDown(KEY_S)) {
+    right->y += SPEED;
+  }
+  
+  DrawRectangle(right->x, right->y, RWIDTH, RHEIGHT, COLOR_RECT);
 }
 
 void ball_wall_collision(Ball *b, real dt) {
-    PMA_ASSERT(b != NULL);
-    vec_scaled_add2d(&b->pos, b->pos, b->vel, dt*BALL_VEL_SCALE);
-    // x wall collision
-    if (b->pos.x > WIDTH - b->radius || b->pos.x < b->radius) {
-        b->vel.x = -b->vel.x;
-    }
+  PMA_ASSERT(b != NULL);
+  vec_scaled_add2d(&b->pos, b->pos, b->vel, dt*BALL_VEL_SCALE);
+  // x wall collision
+  if (b->pos.x > WIDTH - b->radius || b->pos.x < b->radius) {
+    b->vel.x = -b->vel.x;
+  }
 
-    // y wall collision
-    if (b->pos.y > HEIGHT - b->radius) {
-        b->vel.y = -b->vel.y;
-    }
-    if (b->pos.y < SCORE_REGION + b->radius) {  
-        b->vel.y = -b->vel.y;
-    }
+  // y wall collision
+  if (b->pos.y > HEIGHT - b->radius) {
+    b->vel.y = -b->vel.y;
+  }
+  if (b->pos.y < SCORE_REGION + b->radius) {  
+    b->vel.y = -b->vel.y;
+  }
 
-    DrawCircle(b->pos.x, b->pos.y, b->radius, COLOR_BALL);
+  DrawCircle(b->pos.x, b->pos.y, b->radius, COLOR_BALL);
 }
 
 
 void paddle_ball_collision(Ball *b, vec2 left, vec2 right, real dt) {
-    PMA_ASSERT(b != NULL);
-    // left paddle right edge
+  PMA_ASSERT(b != NULL);
+  // left paddle right edge
   if ((b->pos.x - b->radius) <= (left.x + RWIDTH) &&
-        (b->pos.y >= left.y) && (b->pos.y <= left.y + RHEIGHT)) {
-        b->vel.x = -b->vel.x;
-    }
+      (b->pos.y >= left.y) && (b->pos.y <= left.y + RHEIGHT)) {
+    b->vel.x = -b->vel.x;
+  }
   
   // right paddle left edge
-   if ((b->pos.x + b->radius) >= right.x &&
-        (b->pos.y >= right.y) && (b->pos.y <= right.y + RHEIGHT)) {
-        b->vel.x = -b->vel.x;
+  if ((b->pos.x + b->radius) >= right.x &&
+      (b->pos.y >= right.y) && (b->pos.y <= right.y + RHEIGHT)) {
+    b->vel.x = -b->vel.x;
     }
-
 }
 
   

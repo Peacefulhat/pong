@@ -13,36 +13,37 @@ int main(){
   real dt=GetFrameTime(); 
 
   while(!WindowShouldClose()){
-  dt=GetFrameTime();
-  BeginDrawing();
-  ClearBackground(RAYWHITE);
+    dt=GetFrameTime();
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
   
-  switch(options){
-  case 0:
-    home_screen();
-    break;
-  case 1:
-    draw_components(&paddle_left,&paddle_right,&ball,ball_vel);
-    left_paddle_move(&paddle_left);
-    right_paddle_move(&paddle_right);
-    ball_wall_collision(&ball, dt*1.2);
-    paddle_ball_collision(&ball, paddle_left, paddle_right, dt);
-    break;
-  case 2:
-    // settings not implemented yet
-    settings();
-    break;
+    switch(options){
+    case 0:
+      home_screen();
+      break;
+    case 1:
+      draw_components(&paddle_left,&paddle_right,&ball,ball_vel);
+      left_paddle_move(&paddle_left);
+      right_paddle_move(&paddle_right);
+      ball_wall_collision(&ball, dt*1.2);
+      paddle_ball_collision(&ball, paddle_left, paddle_right, dt);
+      break;
+    case 2:
+      // settings not implemented yet
+      settings();
+      break;
+      
+    case 3:
+      quit_screen();
+      break;
+      
+    default:
+      
+    }
     
-  case 3:
-    quit_screen();
-    break;
-    
-  default:
-    
-  }
-  
-  EndDrawing();
+    EndDrawing();
 }
- CloseWindow();
+  
+  CloseWindow();
   return 0;		     
 }
