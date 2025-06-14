@@ -39,7 +39,7 @@ sudo make install
 ```
 ### Building The Game
 ```
-git clone https://github.com/your-username/pong.git
+git clone https://github.com/Peacefulhat/pong.git
 cd pong
 ```
 **run** ./build.sh && ./pong
